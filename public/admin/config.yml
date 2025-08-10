@@ -1,9 +1,7 @@
 backend:
   name: github
-  repo: sungminlee417/collin-holloway # Replace with your GitHub username/repo
-  branch: main # Branch to update (optional; defaults to master)
-  base_url: https://api.netlify.com # Only needed if using Netlify OAuth
-  auth_endpoint: auth/done # Only needed if using Netlify OAuth
+  repo: sungminlee417/collin-holloway
+  branch: main
 
 # Enable editorial workflow for content review
 publish_mode: editorial_workflow
