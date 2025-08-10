@@ -47,7 +47,7 @@ export default function Concerts() {
                     <div>
                       <h4 className="text-xl font-bold mb-2 text-slate-900">The Muse Duo Recital</h4>
                       <p className="text-slate-600 leading-relaxed mb-3">
-                        An evening of contemporary works for guitar and piano featuring premieres and favorites from our "Experiments" album.
+                        An evening of contemporary works for guitar and piano featuring premieres and favorites from our &ldquo;Experiments&rdquo; album.
                       </p>
                       <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500">
                         <div className="flex items-center gap-1">
@@ -147,7 +147,7 @@ export default function Concerts() {
               </div>
               <h4 className="text-lg font-bold mb-3 text-slate-900">Austin City Limits</h4>
               <p className="text-slate-600 text-sm leading-relaxed mb-3">
-                Performed at one of America's most prestigious music festivals, showcasing classical guitar to diverse audiences.
+                Performed at one of America&apos;s most prestigious music festivals, showcasing classical guitar to diverse audiences.
               </p>
               <div className="text-xs text-slate-500 flex items-center gap-1">
                 <i className="fas fa-map-marker-alt text-xs"></i>
@@ -187,7 +187,7 @@ export default function Concerts() {
               </div>
               <h4 className="text-lg font-bold mb-3 text-slate-900">Armstrong Theater</h4>
               <p className="text-slate-600 text-sm leading-relaxed mb-3">
-                World premiere of "Malagueña de Jotron" with Los Romeros Guitar Quartet at this prestigious venue.
+                World premiere of &ldquo;Malagueña de Jotron&rdquo; with Los Romeros Guitar Quartet at this prestigious venue.
               </p>
               <div className="text-xs text-slate-500 flex items-center gap-1">
                 <i className="fas fa-music text-xs"></i>
