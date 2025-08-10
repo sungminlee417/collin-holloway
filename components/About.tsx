@@ -34,7 +34,7 @@ export default function About({ aboutData }: AboutProps) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="relative aspect-[4/5] overflow-hidden rounded-xl lg:rounded-2xl shadow-lg lg:shadow-2xl lg:sticky lg:top-8"
+            className="relative aspect-[4/5] overflow-hidden rounded-xl lg:rounded-2xl shadow-lg lg:shadow-2xl lg:sticky lg:top-8 lg:will-change-transform"
           >
             <Image
               src={aboutData.image}

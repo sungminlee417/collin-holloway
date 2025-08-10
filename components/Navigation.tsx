@@ -34,17 +34,24 @@ export default function Navigation({ siteConfig }: NavigationProps) {
     };
   }, [isOpen]);
 
-  // Prevent body scroll when menu is open
+  // Add scroll prevention to backdrop only, don't change body
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+      // Add event listeners to prevent scrolling on the backdrop
+      const preventScroll = (e: WheelEvent | TouchEvent) => {
+        if ((e.target as Element)?.closest('.backdrop')) {
+          e.preventDefault();
+        }
+      };
+      
+      document.addEventListener('wheel', preventScroll, { passive: false });
+      document.addEventListener('touchmove', preventScroll, { passive: false });
+      
+      return () => {
+        document.removeEventListener('wheel', preventScroll);
+        document.removeEventListener('touchmove', preventScroll);
+      };
     }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
   }, [isOpen]);
 
   const handleLinkClick = () => {
@@ -80,7 +87,7 @@ export default function Navigation({ siteConfig }: NavigationProps) {
       <div className={`fixed inset-0 z-40 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         {/* Backdrop */}
         <div 
-          className="absolute inset-0 bg-black/50 backdrop-blur-sm" 
+          className="backdrop absolute inset-0 bg-black/50 backdrop-blur-sm" 
           onClick={() => setIsOpen(false)}
         />
         
