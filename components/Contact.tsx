@@ -28,12 +28,20 @@ export default function Contact() {
     setSubmitStatus('idle');
 
     try {
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+
+      if (!publicKey || !serviceId || !templateId) {
+        throw new Error('EmailJS configuration is missing. Please contact the site administrator.');
+      }
+
       // Initialize EmailJS with your public key
-      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY');
+      emailjs.init(publicKey);
       
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID',
+        serviceId,
+        templateId,
         {
           from_name: formData.name,
           from_email: formData.email,

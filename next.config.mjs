@@ -8,9 +8,7 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  experimental: {
-    optimizeCss: true,
-  },
+  // Removed experimental optimizeCss due to build issues
   poweredByHeader: false,
   compress: true,
 };
