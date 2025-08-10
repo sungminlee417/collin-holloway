@@ -3,8 +3,13 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
+import { AboutData } from '../lib/markdown';
 
-export default function About() {
+interface AboutProps {
+  aboutData: AboutData;
+}
+
+export default function About({ aboutData }: AboutProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -16,9 +21,9 @@ export default function About() {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16 lg:mb-24"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-tight text-slate-900 dark:text-white">About Collin</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-tight text-slate-900 dark:text-white">{aboutData.title}</h2>
           <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-            A passionate classical guitarist bringing intimate musical moments to life through beautiful tone and rare repertoire
+            {aboutData.subtitle}
           </p>
         </motion.div>
 

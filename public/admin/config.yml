@@ -1,0 +1,222 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+# Enable editorial workflow for content review
+publish_mode: editorial_workflow
+
+# Media and public folders
+media_folder: "public/images"
+public_folder: "/images"
+
+# Site URL (update with your actual domain)
+site_url: https://your-site.com
+display_url: https://your-site.com
+
+# Logo for admin interface
+logo_url: /images/logo.png
+
+collections:
+  # Site Configuration
+  - name: "config"
+    label: "Site Configuration"
+    files:
+      - file: "content/config/site.md"
+        label: "Site Settings"
+        name: "site"
+        fields:
+          - {label: "Site Title", name: "title", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
+          - {label: "Author", name: "author", widget: "string"}
+          - {label: "Email", name: "email", widget: "string"}
+          - label: "Social Links"
+            name: "social"
+            widget: "object"
+            fields:
+              - {label: "YouTube", name: "youtube", widget: "string"}
+              - {label: "Facebook", name: "facebook", widget: "string"}
+              - {label: "Instagram", name: "instagram", widget: "string"}
+              - {label: "Bandcamp", name: "bandcamp", widget: "string"}
+
+  # Hero Section
+  - name: "hero"
+    label: "Hero Section"
+    files:
+      - file: "content/sections/hero.md"
+        label: "Hero Content"
+        name: "hero"
+        fields:
+          - {label: "Name", name: "name", widget: "string"}
+          - {label: "Title/Subtitle", name: "subtitle", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
+          - {label: "Hero Image", name: "image", widget: "image"}
+          - {label: "Primary Button Text", name: "primaryButtonText", widget: "string"}
+          - {label: "Primary Button Link", name: "primaryButtonLink", widget: "string"}
+          - {label: "Secondary Button Text", name: "secondaryButtonText", widget: "string"}
+          - {label: "Secondary Button Link", name: "secondaryButtonLink", widget: "string"}
+
+  # About Section
+  - name: "about"
+    label: "About Section"
+    files:
+      - file: "content/sections/about.md"
+        label: "About Content"
+        name: "about"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Subtitle", name: "subtitle", widget: "text"}
+          - {label: "Bio Content", name: "body", widget: "markdown"}
+          - {label: "Profile Image", name: "image", widget: "image"}
+          - label: "Skills"
+            name: "skills"
+            widget: "list"
+            fields:
+              - {label: "Skill", name: "skill", widget: "string"}
+              - {label: "Icon", name: "icon", widget: "string"}
+          - label: "Achievements"
+            name: "achievements"
+            widget: "list"
+            fields:
+              - {label: "Achievement", name: "achievement", widget: "string"}
+              - {label: "Year", name: "year", widget: "string"}
+
+  # Concerts & Events
+  - name: "concerts"
+    label: "Concerts & Events"
+    files:
+      - file: "content/sections/concerts.md"
+        label: "Concerts Content"
+        name: "concerts"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Subtitle", name: "subtitle", widget: "text"}
+          - label: "Upcoming Concerts"
+            name: "upcoming"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Date", name: "date", widget: "string"}
+              - {label: "Time", name: "time", widget: "string"}
+              - {label: "Location", name: "location", widget: "string"}
+              - {label: "Button Text", name: "buttonText", widget: "string"}
+              - {label: "Button Link", name: "buttonLink", widget: "string"}
+              - {label: "Icon Color", name: "iconColor", widget: "select", options: ["blue", "emerald", "red", "purple", "amber"]}
+          - label: "Past Performances"
+            name: "pastPerformances"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Location", name: "location", widget: "string"}
+              - {label: "Type", name: "type", widget: "string"}
+              - {label: "Icon Color", name: "iconColor", widget: "select", options: ["blue", "emerald", "red", "purple", "amber", "slate"]}
+
+  # Music/Discography
+  - name: "music"
+    label: "Music & Albums"
+    files:
+      - file: "content/sections/music.md"
+        label: "Music Content"
+        name: "music"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Subtitle", name: "subtitle", widget: "text"}
+          - label: "Albums"
+            name: "albums"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Release Date", name: "releaseDate", widget: "string"}
+              - {label: "Album Cover", name: "cover", widget: "image"}
+              - {label: "Album Type", name: "type", widget: "select", options: ["Solo Album", "Duo Album", "Collaboration"]}
+              - {label: "Featured Track", name: "featuredTrack", widget: "string", required: false}
+              - {label: "Featured Track Description", name: "featuredTrackDescription", widget: "text", required: false}
+              - label: "Listen Links"
+                name: "listenLinks"
+                widget: "list"
+                fields:
+                  - {label: "Platform", name: "platform", widget: "select", options: ["Spotify", "Bandcamp", "Apple Music", "YouTube"]}
+                  - {label: "URL", name: "url", widget: "string"}
+              - label: "Additional Info"
+                name: "additionalInfo"
+                widget: "object"
+                fields:
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Content", name: "content", widget: "text"}
+
+  # Videos
+  - name: "videos"
+    label: "Videos"
+    files:
+      - file: "content/sections/videos.md"
+        label: "Videos Content"
+        name: "videos"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Subtitle", name: "subtitle", widget: "text"}
+          - label: "Video List"
+            name: "videos"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "YouTube Video ID", name: "youtubeId", widget: "string"}
+              - {label: "Thumbnail", name: "thumbnail", widget: "image", required: false}
+          - {label: "YouTube Channel Link", name: "channelLink", widget: "string"}
+
+  # Gallery
+  - name: "gallery"
+    label: "Gallery"
+    files:
+      - file: "content/sections/gallery.md"
+        label: "Gallery Content"
+        name: "gallery"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Subtitle", name: "subtitle", widget: "text"}
+          - label: "Images"
+            name: "images"
+            widget: "list"
+            fields:
+              - {label: "Image", name: "src", widget: "image"}
+              - {label: "Alt Text", name: "alt", widget: "string"}
+              - {label: "Caption", name: "caption", widget: "string", required: false}
+
+  # Contact Information
+  - name: "contact"
+    label: "Contact"
+    files:
+      - file: "content/sections/contact.md"
+        label: "Contact Content"
+        name: "contact"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Subtitle", name: "subtitle", widget: "text"}
+          - label: "Inquiry Types"
+            name: "inquiryTypes"
+            widget: "list"
+            field: {label: "Type", name: "type", widget: "string"}
+          - {label: "Contact Email", name: "email", widget: "string"}
+          - label: "Form Settings"
+            name: "formSettings"
+            widget: "object"
+            fields:
+              - {label: "EmailJS Service ID", name: "serviceId", widget: "string"}
+              - {label: "EmailJS Template ID", name: "templateId", widget: "string"}
+              - {label: "EmailJS Public Key", name: "publicKey", widget: "string"}
+
+  # Blog Posts (Optional - for future use)
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Excerpt", name: "excerpt", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Tags", name: "tags", widget: "list", required: false}

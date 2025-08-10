@@ -2,8 +2,14 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { HeroData, SiteConfig } from "../lib/markdown";
 
-export default function Hero() {
+interface HeroProps {
+  heroData: HeroData;
+  siteConfig: SiteConfig;
+}
+
+export default function Hero({ heroData, siteConfig }: HeroProps) {
   const slideIn = {
     initial: { opacity: 0, x: -30 },
     animate: { opacity: 1, x: 0 },
@@ -35,17 +41,15 @@ export default function Hero() {
               <div className="space-y-8">
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
                   <span className="block text-slate-900 dark:text-white leading-tight">
-                    Collin
+                    {heroData.name.split(' ')[0]}
                   </span>
                   <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent leading-tight py-2">
-                    Holloway
+                    {heroData.name.split(' ')[1]}
                   </span>
                 </h1>
 
                 <p className="text-lg sm:text-xl lg:text-2xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                  Crafting intimate musical moments through beautiful tone and
-                  little-known repertoire, bringing poetry to life through the
-                  classical guitar.
+                  {heroData.description}
                 </p>
               </div>
 
@@ -54,23 +58,23 @@ export default function Hero() {
                   className="group bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium sm:font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform-gpu"
                   onClick={() =>
                     document
-                      .getElementById("music")
+                      .querySelector(heroData.primaryButtonLink)
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
                 >
                   <i className="fas fa-play group-hover:scale-110 transition-transform"></i>
-                  Listen Now
+                  {heroData.primaryButtonText}
                 </button>
 
                 <button
                   className="group border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium sm:font-semibold hover:border-slate-400 dark:hover:border-slate-500 hover:bg-white/50 dark:hover:bg-slate-800/50 transition-all duration-200 hover:-translate-y-0.5 transform-gpu"
                   onClick={() =>
                     document
-                      .getElementById("contact")
+                      .querySelector(heroData.secondaryButtonLink)
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
                 >
-                  Book Performance
+                  {heroData.secondaryButtonText}
                 </button>
               </div>
 
@@ -80,7 +84,7 @@ export default function Hero() {
                 </span>
                 <div className="flex gap-3">
                   <a
-                    href="https://www.youtube.com/@collinholloway1929"
+                    href={siteConfig.social.youtube}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-slate-200/50 dark:border-slate-600/50 text-slate-600 dark:text-slate-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-500/50 transition-all duration-200 hover:-translate-y-1 shadow-sm hover:shadow-md"
@@ -89,7 +93,7 @@ export default function Hero() {
                     <i className="fab fa-youtube text-lg"></i>
                   </a>
                   <a
-                    href="https://www.facebook.com/collinhollowayguitar/"
+                    href={siteConfig.social.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-slate-200/50 dark:border-slate-600/50 text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-200 dark:hover:border-blue-500/50 transition-all duration-200 hover:-translate-y-1 shadow-sm hover:shadow-md"
@@ -98,7 +102,7 @@ export default function Hero() {
                     <i className="fab fa-facebook text-lg"></i>
                   </a>
                   <a
-                    href="https://www.instagram.com/collinhollowayguitar/"
+                    href={siteConfig.social.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-slate-200/50 dark:border-slate-600/50 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-pink-900/20 hover:text-pink-600 dark:hover:text-pink-400 hover:border-pink-200 dark:hover:border-pink-500/50 transition-all duration-200 hover:-translate-y-1 shadow-sm hover:shadow-md"
@@ -107,7 +111,7 @@ export default function Hero() {
                     <i className="fab fa-instagram text-lg"></i>
                   </a>
                   <a
-                    href="https://collinholloway.bandcamp.com/album/a-musical-portrait"
+                    href={siteConfig.social.bandcamp}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-slate-200/50 dark:border-slate-600/50 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 hover:border-slate-300 dark:hover:border-slate-500/50 transition-all duration-200 hover:-translate-y-1 shadow-sm hover:shadow-md"
@@ -129,8 +133,8 @@ export default function Hero() {
               <div className="relative max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
                 <div className="aspect-[3/4] relative rounded-2xl overflow-hidden">
                   <Image
-                    src="/Head Shot 1.jpg"
-                    alt="Collin Holloway, classical guitarist, holding his guitar and smiling"
+                    src={heroData.image}
+                    alt={`${heroData.name}, ${heroData.subtitle.toLowerCase()}, holding guitar and smiling`}
                     fill
                     className="object-cover w-full h-full"
                     priority

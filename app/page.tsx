@@ -10,21 +10,59 @@ import Footer from "../components/Footer";
 import ThemeToggle from "../components/ThemeToggle";
 import BackToTop from "../components/BackToTop";
 import SkipNavigation from "../components/SkipNavigation";
+import { 
+  getHeroData, 
+  getAboutData, 
+  getConcertsData, 
+  getMusicData, 
+  getVideosData, 
+  getGalleryData, 
+  getContactData, 
+  getSiteConfig,
+  HeroData,
+  AboutData,
+  ConcertData,
+  MusicData,
+  VideoData,
+  GalleryData,
+  ContactData,
+  SiteConfig
+} from "../lib/markdown";
 
-export default function Home() {
+export default async function Home() {
+  // Fetch all markdown data
+  const [
+    heroData,
+    aboutData,
+    concertsData,
+    musicData,
+    videosData,
+    galleryData,
+    contactData,
+    siteConfig
+  ] = await Promise.all([
+    getHeroData(),
+    getAboutData(),
+    getConcertsData(),
+    getMusicData(),
+    getVideosData(),
+    getGalleryData(),
+    getContactData(),
+    getSiteConfig()
+  ]) as [HeroData, AboutData, ConcertData, MusicData, VideoData, GalleryData, ContactData, SiteConfig];
   return (
     <div className="min-h-screen w-full bg-white dark:bg-slate-900 flex flex-col">
       <SkipNavigation />
       <ThemeToggle />
-      <Navigation />
+      <Navigation siteConfig={siteConfig} />
       <main id="main-content">
-        <Hero />
-        <About />
-        <Concerts />
-        <Music />
-        <Videos />
-        <Gallery />
-        <Contact />
+        <Hero heroData={heroData} siteConfig={siteConfig} />
+        <About aboutData={aboutData} />
+        <Concerts concertsData={concertsData} />
+        <Music musicData={musicData} />
+        <Videos videosData={videosData} />
+        <Gallery galleryData={galleryData} />
+        <Contact contactData={contactData} />
       </main>
       <Footer />
       <BackToTop />

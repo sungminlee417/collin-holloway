@@ -1,0 +1,23 @@
+---
+title: "Gallery"
+subtitle: "Behind the scenes and performance moments capturing the artistry and passion of classical guitar"
+images:
+  - src: "/DSC00023-2.jpg"
+    alt: "Collin Holloway Performance"
+    caption: "Live performance showcasing classical guitar artistry"
+  - src: "/DSC00168.jpg"
+    alt: "Collin Holloway with Guitar"
+    caption: "Portrait with classical guitar"
+  - src: "/L1008655.jpeg"
+    alt: "Collin Holloway Portrait"
+    caption: "Professional headshot for performances"
+  - src: "/DSC00101.jpg"
+    alt: "Concert Performance"
+    caption: "Intimate concert setting"
+  - src: "/L1008607.jpeg"
+    alt: "The Muse Duo Performance"
+    caption: "The Muse Duo in performance"
+  - src: "/Head Shot 1.jpg"
+    alt: "Collin Holloway Headshot"
+    caption: "Professional headshot"
+---
