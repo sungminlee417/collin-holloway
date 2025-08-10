@@ -1,8 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { SiteConfig } from '../lib/markdown';
 
-export default function Navigation() {
+interface NavigationProps {
+  siteConfig: SiteConfig;
+}
+
+export default function Navigation({ siteConfig }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Close menu when clicking outside or on escape key

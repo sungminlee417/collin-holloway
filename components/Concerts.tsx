@@ -1,8 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ConcertData } from "../lib/markdown";
 
-export default function Concerts() {
+interface ConcertsProps {
+  concertsData: ConcertData;
+}
+
+export default function Concerts({ concertsData }: ConcertsProps) {
   return (
     <section className="py-32 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 bg-slate-50 dark:bg-slate-800">
       <div className="max-w-6xl mx-auto">

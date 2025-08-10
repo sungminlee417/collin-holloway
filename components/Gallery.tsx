@@ -3,8 +3,13 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
+import { GalleryData } from '../lib/markdown';
 
-export default function Gallery() {
+interface GalleryProps {
+  galleryData: GalleryData;
+}
+
+export default function Gallery({ galleryData }: GalleryProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const images = [

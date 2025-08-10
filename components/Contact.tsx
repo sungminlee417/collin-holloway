@@ -3,8 +3,13 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { ContactData } from '../lib/markdown';
 
-export default function Contact() {
+interface ContactProps {
+  contactData: ContactData;
+}
+
+export default function Contact({ contactData }: ContactProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

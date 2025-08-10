@@ -2,8 +2,13 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { MusicData } from "../lib/markdown";
 
-export default function Music() {
+interface MusicProps {
+  musicData: MusicData;
+}
+
+export default function Music({ musicData }: MusicProps) {
   return (
     <section
       id="music"

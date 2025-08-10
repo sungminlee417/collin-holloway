@@ -1,8 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { VideoData } from '../lib/markdown';
 
-export default function Videos() {
+interface VideosProps {
+  videosData: VideoData;
+}
+
+export default function Videos({ videosData }: VideosProps) {
   const videos = [
     {
       id: 'kIjMWzq18zE',
