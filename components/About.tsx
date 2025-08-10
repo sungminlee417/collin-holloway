@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import Image from 'next/image';
 import { AboutData } from '../lib/markdown';
 
@@ -10,7 +9,6 @@ interface AboutProps {
 }
 
 export default function About({ aboutData }: AboutProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <section id="about" className="py-16 sm:py-24 lg:py-32 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 bg-white dark:bg-slate-900">
@@ -37,7 +35,7 @@ export default function About({ aboutData }: AboutProps) {
             className="relative aspect-[4/5] overflow-hidden rounded-xl lg:rounded-2xl shadow-lg lg:shadow-2xl lg:sticky lg:top-8"
           >
             <Image
-              src="/DSC00168.jpg"
+              src={aboutData.image}
               alt="Collin Holloway performing"
               fill
               className="object-cover"
@@ -55,138 +53,65 @@ export default function About({ aboutData }: AboutProps) {
             transition={{ delay: 0.1, duration: 0.5 }}
             className="space-y-6 lg:space-y-8"
           >
-            {/* Brief intro - always visible */}
+            {/* Bio content from CMS */}
             <div className="prose prose-lg max-w-none">
-              <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                Classical guitarist Collin Holloway began playing at the age of nine in his hometown of Oklahoma City. 
-                Recognized as a burgeoning talent from an early age (his first solo recital was met with two standing ovations), 
-                he studied with Matthew Denman before pursuing his higher education at the Eastman School of Music with 
-                Thomas Viloteau and Nicholas Goluses.
-              </p>
+              <div 
+                className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-slate-900 [&>h2]:dark:text-white [&>h2]:mt-8 [&>h2]:mb-4 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>li]:text-slate-700 [&>li]:dark:text-slate-300 [&>strong]:text-slate-900 [&>strong]:dark:text-white"
+                dangerouslySetInnerHTML={{ __html: aboutData.content }}
+              />
             </div>
 
-            {/* Expandable full bio */}
-            <div className={`overflow-hidden transition-all duration-500 ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-              <div className="prose prose-lg max-w-none space-y-4">
-                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Upon graduation, he obtained his master&apos;s degree with Dieter Hennings at the University of Kentucky 
-                  College of Fine Arts and was selected to study privately with the renowned musician Angelo Gilardino in 
-                  Vercelli, Italy.
-                </p>
-                
-                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Collin&apos;s performing experience is extensive. He has toured across much of America and Spain as a 
-                  soloist and as part of various ensembles in festivals such as Austin City Limits, CHAMBERart Madrid, 
-                  and the Celedonio Romero Guitar Institute. Highlights of his career include winning the Haire Guitar 
-                  Competition, two consecutive first place finishes at the National Brownsville Guitar Duet Competition, 
-                  and being recognized as a &quot;Rising Young Artist&quot; by the Opera Club of the Villages.
-                </p>
-                
-                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Most recently, Collin was chosen as a soloist to premiere the work &quot;Malagueña de Jotron&quot; at the 
-                  Armstrong Theater with the renowned Los Romeros Guitar Quartet, as well as appearances with the 
-                  Juliani Ensemble.
-                </p>
-                
-                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                  As a musician, Collin strives to bring to life the intimate nature and inherent poetry of the guitar 
-                  through a beautiful tone and a sensitive touch. This can be heard throughout his debut album 
-                  &quot;A Musical Portrait&quot;, where he performs rare works by Angelo Gilardino and Graciela Agudelo, 
-                  amongst other more seminal compositions.
-                </p>
-                
-                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                  An adamant performer of chamber music, Collin is one half of The Muse Duo. This guitar and piano duo 
-                  was formed at the Eastman School of Music with pianist and composer Robert Benedict. Just months after 
-                  playing together for the first time, The Muse Duo toured parts of the United States. Currently, the 
-                  Muse Duo is championing new music for this rare setting of instruments through the composition of new 
-                  works by Robert, as well as premiere performances of these compositions. Their debut album 
-                  &quot;Experiments&quot; was released in April 2023.
-                </p>
 
-                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Collin is also a co-founder of the Off the Dock Chamber Music Festival, an intimate festival dedicated 
-                  to bringing chamber music to the beautiful Finger Lakes region of New York, providing a platform for 
-                  emerging artists and fostering community through music.
-                </p>
-              </div>
-            </div>
-
-            {/* Read More/Less Button */}
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="group inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors"
-            >
-              <span>{isExpanded ? 'Read Less' : 'Read Full Biography'}</span>
-              <i className={`fas fa-chevron-${isExpanded ? 'up' : 'down'} text-sm transition-transform group-hover:translate-y-0.5`}></i>
-            </button>
-
-            {/* Quick Facts Cards */}
+            {/* Skills Cards - Dynamic from CMS */}
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mt-8 lg:mt-10">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="bg-slate-50 dark:bg-slate-800 p-6 lg:p-8 rounded-xl lg:rounded-2xl border border-slate-200/50 dark:border-slate-700/50 hover:shadow-md lg:hover:shadow-lg transition-all duration-200 transform-gpu"
-              >
-                <div className="bg-gradient-to-br from-blue-500 to-indigo-600 w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl flex items-center justify-center mb-4 lg:mb-6 shadow-md lg:shadow-lg">
-                  <i className="fas fa-graduation-cap text-white text-lg lg:text-xl"></i>
-                </div>
-                <h4 className="text-lg lg:text-xl font-bold mb-2 lg:mb-3 text-slate-900 dark:text-white">Education</h4>
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Eastman School of Music, University of Kentucky, Private study in Italy with Angelo Gilardino
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                className="bg-slate-50 dark:bg-slate-800 p-6 lg:p-8 rounded-xl lg:rounded-2xl border border-slate-200/50 dark:border-slate-700/50 hover:shadow-md lg:hover:shadow-lg transition-all duration-200 transform-gpu"
-              >
-                <div className="bg-gradient-to-br from-amber-500 to-orange-600 w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl flex items-center justify-center mb-4 lg:mb-6 shadow-md lg:shadow-lg">
-                  <i className="fas fa-trophy text-white text-lg lg:text-xl"></i>
-                </div>
-                <h4 className="text-lg lg:text-xl font-bold mb-2 lg:mb-3 text-slate-900 dark:text-white">Awards</h4>
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Haire Guitar Competition Winner, National Brownsville Duet Competition, Rising Young Artist
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="bg-slate-50 dark:bg-slate-800 p-6 lg:p-8 rounded-xl lg:rounded-2xl border border-slate-200/50 dark:border-slate-700/50 hover:shadow-md lg:hover:shadow-lg transition-all duration-200 transform-gpu"
-              >
-                <div className="bg-gradient-to-br from-emerald-500 to-teal-600 w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl flex items-center justify-center mb-4 lg:mb-6 shadow-md lg:shadow-lg">
-                  <i className="fas fa-microphone text-white text-lg lg:text-xl"></i>
-                </div>
-                <h4 className="text-lg lg:text-xl font-bold mb-2 lg:mb-3 text-slate-900 dark:text-white">Performances</h4>
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Austin City Limits, CHAMBERart Madrid, Los Romeros Quartet collaboration
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                className="bg-slate-50 dark:bg-slate-800 p-6 lg:p-8 rounded-xl lg:rounded-2xl border border-slate-200/50 dark:border-slate-700/50 hover:shadow-md lg:hover:shadow-lg transition-all duration-200 transform-gpu"
-              >
-                <div className="bg-gradient-to-br from-purple-500 to-violet-600 w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl flex items-center justify-center mb-4 lg:mb-6 shadow-md lg:shadow-lg">
-                  <i className="fas fa-music text-white text-lg lg:text-xl"></i>
-                </div>
-                <h4 className="text-lg lg:text-xl font-bold mb-2 lg:mb-3 text-slate-900 dark:text-white">Projects</h4>
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                  The Muse Duo, Off the Dock Chamber Festival Co-founder
-                </p>
-              </motion.div>
+              {aboutData.skills.map((skill, index) => {
+                const colors = [
+                  'from-blue-500 to-indigo-600',
+                  'from-emerald-500 to-teal-600', 
+                  'from-amber-500 to-orange-600',
+                  'from-purple-500 to-violet-600'
+                ];
+                return (
+                  <motion.div
+                    key={skill.skill}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
+                    className="bg-slate-50 dark:bg-slate-800 p-6 lg:p-8 rounded-xl lg:rounded-2xl border border-slate-200/50 dark:border-slate-700/50 hover:shadow-md lg:hover:shadow-lg transition-all duration-200 transform-gpu"
+                  >
+                    <div className={`bg-gradient-to-br ${colors[index % colors.length]} w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl flex items-center justify-center mb-4 lg:mb-6 shadow-md lg:shadow-lg`}>
+                      <i className={`${skill.icon} text-white text-lg lg:text-xl`}></i>
+                    </div>
+                    <h4 className="text-lg lg:text-xl font-bold mb-2 lg:mb-3 text-slate-900 dark:text-white">{skill.skill}</h4>
+                  </motion.div>
+                );
+              })}
             </div>
+
+            {/* Achievements Timeline */}
+            {aboutData.achievements && aboutData.achievements.length > 0 && (
+              <div className="mt-12 lg:mt-16">
+                <h3 className="text-xl font-bold mb-6 text-slate-900 dark:text-white">Recent Achievements</h3>
+                <div className="space-y-4">
+                  {aboutData.achievements.map((achievement, index) => (
+                    <motion.div
+                      key={achievement.achievement}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 * index, duration: 0.5 }}
+                      className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200/50 dark:border-slate-700/50"
+                    >
+                      <div className="bg-gradient-to-br from-slate-500 to-slate-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-white text-sm font-semibold">{achievement.year}</span>
+                      </div>
+                      <p className="text-slate-700 dark:text-slate-300">{achievement.achievement}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
           </motion.div>
         </div>
       </div>

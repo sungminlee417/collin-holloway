@@ -53,7 +53,7 @@ export default function Contact({ contactData }: ContactProps) {
           inquiry_type: formData.inquiryType,
           date: formData.date,
           message: formData.message,
-          to_email: 'collinholloway26@gmail.com'
+          to_email: contactData.email
         }
       );
 
@@ -76,9 +76,9 @@ export default function Contact({ contactData }: ContactProps) {
           viewport={{ once: true }}
           className="text-center mb-24"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-8 tracking-tight text-slate-900 dark:text-white">Get in Touch</h2>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-8 tracking-tight text-slate-900 dark:text-white">{contactData.title}</h2>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Interested in booking a performance or collaboration? Let&apos;s create something beautiful together.
+            {contactData.subtitle}
           </p>
         </motion.div>
 
@@ -132,12 +132,9 @@ export default function Contact({ contactData }: ContactProps) {
                   className="w-full px-6 py-4 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-900/10 dark:focus:ring-slate-400/20 focus:border-slate-900 dark:focus:border-slate-400 transition-all duration-200 text-slate-900 dark:text-white"
                 >
                   <option value="">Select an option</option>
-                  <option value="Performance Booking">Performance Booking</option>
-                  <option value="Lesson Inquiry">Lesson Inquiry</option>
-                  <option value="Collaboration">Collaboration</option>
-                  <option value="Media/Press">Media/Press</option>
-                  <option value="General Question">General Question</option>
-                  <option value="Other">Other</option>
+                  {contactData.inquiryTypes.map((type) => (
+                    <option key={type} value={type}>{type}</option>
+                  ))}
                 </select>
               </div>
               <div>
@@ -147,7 +144,7 @@ export default function Contact({ contactData }: ContactProps) {
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
-                  className="w-full px-6 py-4 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-900/10 dark:focus:ring-slate-400/20 focus:border-slate-900 dark:focus:border-slate-400 transition-all duration-200 text-slate-900 dark:text-white"
+                  className="w-full px-6 py-4 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-900/10 dark:focus:ring-slate-400/20 focus:border-slate-900 dark:focus:border-slate-400 transition-all duration-200 text-slate-900 dark:text-white [color-scheme:light] dark:[color-scheme:dark]"
                 />
               </div>
             </div>

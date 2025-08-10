@@ -8,18 +8,6 @@ interface VideosProps {
 }
 
 export default function Videos({ videosData }: VideosProps) {
-  const videos = [
-    {
-      id: 'kIjMWzq18zE',
-      title: 'Classical Guitar Performance',
-      description: 'Solo classical guitar performance by Collin Holloway'
-    },
-    {
-      id: 'VW_-NAn_4RQ',
-      title: 'Guitar Performance Video',
-      description: 'Featured performance showcasing classical guitar artistry'
-    }
-  ];
 
   return (
     <section id="videos" className="py-16 sm:py-24 lg:py-32 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 bg-slate-50 dark:bg-slate-800">
@@ -30,16 +18,16 @@ export default function Videos({ videosData }: VideosProps) {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16 lg:mb-24"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-tight text-slate-900 dark:text-white">Videos</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-tight text-slate-900 dark:text-white">{videosData.title}</h2>
           <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-            Watch performances and behind-the-scenes content from concerts and recording sessions
+            {videosData.subtitle}
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {videos.map((video, index) => (
+          {videosData.videos.map((video, index) => (
             <motion.div
-              key={video.id}
+              key={video.youtubeId}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -48,7 +36,7 @@ export default function Videos({ videosData }: VideosProps) {
             >
               <div className="aspect-video relative bg-slate-900">
                 <iframe
-                  src={`https://www.youtube.com/embed/${video.id}?rel=0&modestbranding=1`}
+                  src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1`}
                   title={`${video.title} - Classical guitar performance by Collin Holloway`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -72,7 +60,7 @@ export default function Videos({ videosData }: VideosProps) {
           className="text-center mt-12"
         >
           <a
-            href="https://www.youtube.com/@collinholloway1929"
+            href={videosData.channelLink}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"

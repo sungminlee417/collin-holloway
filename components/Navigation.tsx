@@ -176,7 +176,7 @@ export default function Navigation({ siteConfig }: NavigationProps) {
           {/* Social Links */}
           <div className="flex justify-center gap-4 p-6 pt-0">
             <a 
-              href="https://www.youtube.com/@collinholloway1929"
+              href={siteConfig.social.youtube}
               target="_blank"
               rel="noopener noreferrer" 
               className="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-all duration-200 text-slate-600 dark:text-slate-300"
@@ -185,7 +185,7 @@ export default function Navigation({ siteConfig }: NavigationProps) {
               <i className="fab fa-youtube text-lg"></i>
             </a>
             <a 
-              href="https://www.facebook.com/collinhollowayguitar/"
+              href={siteConfig.social.facebook}
               target="_blank"
               rel="noopener noreferrer" 
               className="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 text-slate-600 dark:text-slate-300"
@@ -194,7 +194,7 @@ export default function Navigation({ siteConfig }: NavigationProps) {
               <i className="fab fa-facebook text-lg"></i>
             </a>
             <a 
-              href="https://www.instagram.com/collinhollowayguitar/"
+              href={siteConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer" 
               className="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg hover:bg-pink-50 dark:hover:bg-pink-900/20 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-200 text-slate-600 dark:text-slate-300"
@@ -203,7 +203,7 @@ export default function Navigation({ siteConfig }: NavigationProps) {
               <i className="fab fa-instagram text-lg"></i>
             </a>
             <a 
-              href="https://collinholloway.bandcamp.com/album/a-musical-portrait"
+              href={siteConfig.social.bandcamp}
               target="_blank"
               rel="noopener noreferrer" 
               className="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-all duration-200 text-slate-600 dark:text-slate-300"

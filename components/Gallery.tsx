@@ -11,15 +11,7 @@ interface GalleryProps {
 
 export default function Gallery({ galleryData }: GalleryProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  const images = [
-    { src: '/DSC00023-2.jpg', alt: 'Collin Holloway Performance', delay: 0 },
-    { src: '/DSC00168.jpg', alt: 'Collin Holloway Guitar', delay: 0.1 },
-    { src: '/L1008655.jpeg', alt: 'Collin Holloway Portrait', delay: 0.2 },
-    { src: '/DSC00101.jpg', alt: 'Collin Holloway Concert', delay: 0.3 },
-    { src: '/L1008607.jpeg', alt: 'The Muse Duo Performance', delay: 0.4 },
-    { src: '/Head Shot 1.jpg', alt: 'Collin Holloway Headshot', delay: 0.5 }
-  ];
+  const [selectedCaption, setSelectedCaption] = useState<string | null>(null);
 
   return (
     <>
@@ -31,26 +23,30 @@ export default function Gallery({ galleryData }: GalleryProps) {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16 lg:mb-24"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-tight text-slate-900 dark:text-white">Gallery</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-tight text-slate-900 dark:text-white">{galleryData.title}</h2>
             <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-              Behind the scenes and performance moments capturing the artistry and passion of classical guitar
+              {galleryData.subtitle}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {images.map((image) => (
+            {galleryData.images.map((image, index) => (
               <motion.button
                 key={image.src}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: image.delay, duration: 0.5 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
                 className="group cursor-pointer w-full text-left focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 rounded-lg sm:rounded-xl lg:rounded-2xl"
-                onClick={() => setSelectedImage(image.src)}
+                onClick={() => {
+                  setSelectedImage(image.src);
+                  setSelectedCaption(image.caption || null);
+                }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     setSelectedImage(image.src);
+                    setSelectedCaption(image.caption || null);
                   }
                 }}
                 aria-label={`View larger version of ${image.alt}`}
@@ -65,6 +61,11 @@ export default function Gallery({ galleryData }: GalleryProps) {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {image.caption && (
+                    <div className="absolute bottom-0 left-0 right-0 p-3 text-white text-sm font-medium bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {image.caption}
+                    </div>
+                  )}
                 </div>
               </motion.button>
             ))}
@@ -76,13 +77,17 @@ export default function Gallery({ galleryData }: GalleryProps) {
       {selectedImage && (
         <div 
           className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
+          onClick={() => {
+            setSelectedImage(null);
+            setSelectedCaption(null);
+          }}
           role="dialog"
           aria-modal="true"
           aria-label="Image gallery lightbox"
           onKeyDown={(e) => {
             if (e.key === 'Escape') {
               setSelectedImage(null);
+              setSelectedCaption(null);
             }
           }}
         >
@@ -99,9 +104,19 @@ export default function Gallery({ galleryData }: GalleryProps) {
               className="object-contain"
               sizes="100vw"
             />
+            {selectedCaption && (
+              <div className="absolute bottom-4 left-4 right-4 text-center">
+                <p className="text-white text-lg font-medium bg-black/50 backdrop-blur-md px-4 py-2 rounded-lg">
+                  {selectedCaption}
+                </p>
+              </div>
+            )}
             <button
               className="absolute top-4 right-4 p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
-              onClick={() => setSelectedImage(null)}
+              onClick={() => {
+                setSelectedImage(null);
+                setSelectedCaption(null);
+              }}
               aria-label="Close image lightbox"
               autoFocus
             >
