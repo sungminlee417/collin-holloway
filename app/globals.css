@@ -1,27 +1,8 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
-:root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --primary: #2563eb;
-  --secondary: #64748b;
-  --accent: #059669;
-  --border: #e2e8f0;
-  --card: #ffffff;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-border: var(--border);
-  --color-card: var(--card);
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "Fira Code", monospace;
-}
 
 /* Base styles */
 * {
@@ -32,34 +13,37 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background: var(--background);
-  color: var(--foreground);
   font-family: "Inter", system-ui, sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Selection styles */
 ::selection {
-  background: var(--primary);
+  background: #2563eb;
   color: white;
 }
 
 /* Focus styles for accessibility */
 :focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 2px solid #2563eb;
   outline-offset: 2px;
 }
 
 /* Gradient text utility */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: linear-gradient(135deg, #2563eb, #059669);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -96,17 +80,17 @@ img, video {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--border);
+  background: #e2e8f0;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--secondary);
+  background: #64748b;
   border-radius: 6px;
-  border: 3px solid var(--background);
+  border: 3px solid #ffffff;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--foreground);
+  background: #0f172a;
 }
 
 /* Responsive typography */
@@ -138,15 +122,4 @@ img, video {
   animation: fadeIn 0.5s ease-out;
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f0f10;
-    --foreground: #f1f5f9;
-    --primary: #3b82f6;
-    --secondary: #94a3b8;
-    --accent: #10b981;
-    --border: #1e293b;
-    --card: #1a1a1b;
-  }
-}
+/* Dark mode will be handled by Tailwind's built-in dark: classes */

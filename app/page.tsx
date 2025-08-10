@@ -2,28 +2,32 @@ import Navigation from "../components/Navigation";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import Concerts from "../components/Concerts";
-import Press from "../components/Press";
 import Music from "../components/Music";
 import Videos from "../components/Videos";
-import Performances from "../components/Performances";
 import Gallery from "../components/Gallery";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import ThemeToggle from "../components/ThemeToggle";
+import BackToTop from "../components/BackToTop";
+import SkipNavigation from "../components/SkipNavigation";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center min-w-screen">
+    <div className="min-h-screen w-full bg-white dark:bg-slate-900 flex flex-col">
+      <SkipNavigation />
+      <ThemeToggle />
       <Navigation />
-      <Hero />
-      <About />
-      <Concerts />
-      <Press />
-      <Music />
-      <Videos />
-      <Performances />
-      <Gallery />
-      <Contact />
+      <main id="main-content">
+        <Hero />
+        <About />
+        <Concerts />
+        <Music />
+        <Videos />
+        <Gallery />
+        <Contact />
+      </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 }

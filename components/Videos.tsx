@@ -17,7 +17,7 @@ export default function Videos() {
   ];
 
   return (
-    <section id="videos" className="py-16 sm:py-24 lg:py-32 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 bg-slate-50">
+    <section id="videos" className="py-16 sm:py-24 lg:py-32 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 bg-slate-50 dark:bg-slate-800">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -25,8 +25,8 @@ export default function Videos() {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16 lg:mb-24"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-tight text-slate-900">Videos</h2>
-          <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-tight text-slate-900 dark:text-white">Videos</h2>
+          <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
             Watch performances and behind-the-scenes content from concerts and recording sessions
           </p>
         </motion.div>
@@ -39,20 +39,21 @@ export default function Videos() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="bg-white rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-white dark:bg-slate-700 rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <div className="aspect-video relative bg-slate-900">
                 <iframe
-                  src={`https://www.youtube.com/embed/${video.id}`}
-                  title={video.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  src={`https://www.youtube.com/embed/${video.id}?rel=0&modestbranding=1`}
+                  title={`${video.title} - Classical guitar performance by Collin Holloway`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                  className="absolute inset-0 w-full h-full"
+                  className="absolute inset-0 w-full h-full border-0"
+                  loading="lazy"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-slate-900">{video.title}</h3>
-                <p className="text-slate-600">{video.description}</p>
+                <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">{video.title}</h3>
+                <p className="text-slate-600 dark:text-slate-300">{video.description}</p>
               </div>
             </motion.div>
           ))}

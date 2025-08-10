@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-white/20 mt-16 pt-8 text-center">
-          <p className="text-slate-300">&copy; 2024 Collin Holloway. All rights reserved.</p>
+          <p className="text-slate-300">&copy; {new Date().getFullYear()} Collin Holloway. All rights reserved.</p>
         </div>
       </div>
     </footer>
