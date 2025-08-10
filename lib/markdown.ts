@@ -89,6 +89,7 @@ export interface HeroData {
 export interface AboutData {
   title: string;
   subtitle: string;
+  bioIntro: string;
   image: string;
   skills: Array<{
     skill: string;

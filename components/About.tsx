@@ -58,57 +58,17 @@ export default function About({ aboutData }: AboutProps) {
             {/* Brief intro - always visible */}
             <div className="prose prose-lg max-w-none">
               <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                Classical guitarist Collin Holloway began playing at the age of nine in his hometown of Oklahoma City. 
-                Recognized as a burgeoning talent from an early age (his first solo recital was met with two standing ovations), 
-                he studied with Matthew Denman before pursuing his higher education at the Eastman School of Music with 
-                Thomas Viloteau and Nicholas Goluses.
+                {aboutData.bioIntro}
               </p>
             </div>
 
             {/* Expandable full bio */}
             <div className={`overflow-hidden transition-all duration-500 ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-              <div className="prose prose-lg max-w-none space-y-4">
-                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Upon graduation, he obtained his master&apos;s degree with Dieter Hennings at the University of Kentucky 
-                  College of Fine Arts and was selected to study privately with the renowned musician Angelo Gilardino in 
-                  Vercelli, Italy.
-                </p>
-                
-                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Collin&apos;s performing experience is extensive. He has toured across much of America and Spain as a 
-                  soloist and as part of various ensembles in festivals such as Austin City Limits, CHAMBERart Madrid, 
-                  and the Celedonio Romero Guitar Institute. Highlights of his career include winning the Haire Guitar 
-                  Competition, two consecutive first place finishes at the National Brownsville Guitar Duet Competition, 
-                  and being recognized as a &quot;Rising Young Artist&quot; by the Opera Club of the Villages.
-                </p>
-                
-                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Most recently, Collin was chosen as a soloist to premiere the work &quot;Malagueña de Jotron&quot; at the 
-                  Armstrong Theater with the renowned Los Romeros Guitar Quartet, as well as appearances with the 
-                  Juliani Ensemble.
-                </p>
-                
-                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                  As a musician, Collin strives to bring to life the intimate nature and inherent poetry of the guitar 
-                  through a beautiful tone and a sensitive touch. This can be heard throughout his debut album 
-                  &quot;A Musical Portrait&quot;, where he performs rare works by Angelo Gilardino and Graciela Agudelo, 
-                  amongst other more seminal compositions.
-                </p>
-                
-                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                  An adamant performer of chamber music, Collin is one half of The Muse Duo. This guitar and piano duo 
-                  was formed at the Eastman School of Music with pianist and composer Robert Benedict. Just months after 
-                  playing together for the first time, The Muse Duo toured parts of the United States. Currently, the 
-                  Muse Duo is championing new music for this rare setting of instruments through the composition of new 
-                  works by Robert, as well as premiere performances of these compositions. Their debut album 
-                  &quot;Experiments&quot; was released in April 2023.
-                </p>
-
-                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Collin is also a co-founder of the Off the Dock Chamber Music Festival, an intimate festival dedicated 
-                  to bringing chamber music to the beautiful Finger Lakes region of New York, providing a platform for 
-                  emerging artists and fostering community through music.
-                </p>
+              <div className="prose prose-lg max-w-none space-y-4 text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+                <div 
+                  className="[&>p]:mb-4 [&>p]:text-slate-700 [&>p]:dark:text-slate-300 [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-slate-900 [&>h2]:dark:text-white [&>h2]:mt-6 [&>h2]:mb-3 [&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-slate-900 [&>h3]:dark:text-white [&>h3]:mt-5 [&>h3]:mb-2 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>ul]:mb-4 [&>li]:text-slate-700 [&>li]:dark:text-slate-300 [&>strong]:text-slate-900 [&>strong]:dark:text-white [&>em]:italic"
+                  dangerouslySetInnerHTML={{ __html: aboutData.contentHtml }} 
+                />
               </div>
             </div>
 

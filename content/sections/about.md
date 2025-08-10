@@ -1,6 +1,7 @@
 ---
 title: "About Collin"
 subtitle: "Discover the artistry and passion behind the music"
+bioIntro: "Classical guitarist Collin Holloway began playing at the age of nine in his hometown of Oklahoma City. Recognized as a burgeoning talent from an early age (his first solo recital was met with two standing ovations), he studied with Matthew Denman before pursuing his higher education at the Eastman School of Music with Thomas Viloteau and Nicholas Goluses."
 image: "/DSC00168.jpg"
 skills:
   - skill: "Classical Guitar Performance"
@@ -20,29 +21,14 @@ achievements:
     year: "2021"
 ---
 
-Collin Holloway is a classical guitarist dedicated to expanding the boundaries of his instrument through thoughtful programming and compelling performances. Based in Rochester, New York, Collin brings both technical excellence and deep musical sensitivity to every performance.
+Upon graduation, he obtained his master's degree with Dieter Hennings at the University of Kentucky College of Fine Arts and was selected to study privately with the renowned musician Angelo Gilardino in Vercelli, Italy.
 
-## Musical Journey
+Collin's performing experience is extensive. He has toured across much of America and Spain as a soloist and as part of various ensembles in festivals such as Austin City Limits, CHAMBERart Madrid, and the Celedonio Romero Guitar Institute. Highlights of his career include winning the Haire Guitar Competition, two consecutive first place finishes at the National Brownsville Guitar Duet Competition, and being recognized as a "Rising Young Artist" by the Opera Club of the Villages.
 
-Collin's musical journey began with a fascination for the intimate voice of the classical guitar. He has developed a reputation for his beautiful tone and his commitment to exploring lesser-known repertoire that showcases the guitar's unique expressive capabilities.
+Most recently, Collin was chosen as a soloist to premiere the work "Malagueña de Jotron" at the Armstrong Theater with the renowned Los Romeros Guitar Quartet, as well as appearances with the Juliani Ensemble.
 
-## The Muse Duo
+As a musician, Collin strives to bring to life the intimate nature and inherent poetry of the guitar through a beautiful tone and a sensitive touch. This can be heard throughout his debut album "A Musical Portrait", where he performs rare works by Angelo Gilardino and Graciela Agudelo, amongst other more seminal compositions.
 
-Together with pianist and composer Robert Benedict, Collin formed The Muse Duo, an ensemble dedicated to championing new music for the rare combination of guitar and piano. Their debut album "Experiments" features original compositions that push the boundaries of both instruments while maintaining accessibility for audiences.
+An adamant performer of chamber music, Collin is one half of The Muse Duo. This guitar and piano duo was formed at the Eastman School of Music with pianist and composer Robert Benedict. Just months after playing together for the first time, The Muse Duo toured parts of the United States. Currently, the Muse Duo is championing new music for this rare setting of instruments through the composition of new works by Robert, as well as premiere performances of these compositions. Their debut album "Experiments" was released in April 2023.
 
-## Performance Philosophy
-
-Collin believes in the power of classical guitar to create intimate connections between performer and audience. His performances are characterized by:
-
-- **Thoughtful Programming**: Carefully curated repertoire that tells a story
-- **Technical Excellence**: Precise execution married with musical expression  
-- **Audience Engagement**: Creating accessibility without compromising artistic integrity
-- **Educational Outreach**: Sharing knowledge and passion for the classical guitar
-
-## Education & Training
-
-Collin completed his graduate studies at the prestigious Eastman School of Music, where he refined his technique and developed his artistic voice. His education emphasized both solo performance and chamber music collaboration, skills that continue to inform his diverse musical activities.
-
-## Community Engagement
-
-Beyond performing, Collin is committed to building community around classical music. He co-founded the Off the Dock Chamber Festival in the beautiful Finger Lakes region of New York, creating opportunities for both established and emerging artists to share their music in an intimate setting.
+Collin is also a co-founder of the Off the Dock Chamber Music Festival, an intimate festival dedicated to bringing chamber music to the beautiful Finger Lakes region of New York, providing a platform for emerging artists and fostering community through music.
