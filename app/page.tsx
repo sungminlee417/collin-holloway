@@ -7,8 +7,6 @@ import Videos from "../components/Videos";
 import Gallery from "../components/Gallery";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
-import ThemeToggle from "../components/ThemeToggle";
-import BackToTop from "../components/BackToTop";
 import SkipNavigation from "../components/SkipNavigation";
 import { 
   getHeroData, 
@@ -53,7 +51,6 @@ export default async function Home() {
   return (
     <div className="min-h-screen w-full bg-white dark:bg-slate-900 flex flex-col">
       <SkipNavigation />
-      <ThemeToggle />
       <Navigation siteConfig={siteConfig} />
       <main id="main-content">
         <Hero heroData={heroData} siteConfig={siteConfig} />
@@ -65,7 +62,6 @@ export default async function Home() {
         <Contact contactData={contactData} />
       </main>
       <Footer />
-      <BackToTop />
     </div>
   );
 }

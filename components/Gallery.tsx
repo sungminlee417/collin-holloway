@@ -15,29 +15,27 @@ export default function Gallery({ galleryData }: GalleryProps) {
 
   return (
     <>
-      <section id="gallery" className="py-16 sm:py-24 lg:py-32 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 bg-white dark:bg-slate-900">
+      <section id="gallery" className="py-32 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 bg-white dark:bg-slate-950">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16 lg:mb-24"
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            className="mb-20 lg:mb-28"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-tight text-slate-900 dark:text-white">{galleryData.title}</h2>
-            <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-              {galleryData.subtitle}
-            </p>
+            <h2 className="font-serif font-medium text-3xl sm:text-4xl lg:text-5xl xl:text-6xl tracking-tight text-slate-900 dark:text-white italic">Gallery</h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 lg:gap-8 space-y-6 lg:space-y-8">
             {galleryData.images.map((image, index) => (
               <motion.button
                 key={image.src}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="group cursor-pointer w-full text-left focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 rounded-lg sm:rounded-xl lg:rounded-2xl"
+                transition={{ delay: index * 0.05, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+                className="group cursor-pointer w-full text-left focus:outline-none break-inside-avoid mb-6 lg:mb-8"
                 onClick={() => {
                   setSelectedImage(image.src);
                   setSelectedCaption(image.caption || null);
@@ -51,19 +49,20 @@ export default function Gallery({ galleryData }: GalleryProps) {
                 }}
                 aria-label={`View larger version of ${image.alt}`}
               >
-                <div className="relative aspect-[4/3] overflow-hidden rounded-lg sm:rounded-xl lg:rounded-2xl bg-slate-100 shadow-md hover:shadow-xl transition-all duration-300 transform-gpu hover:-translate-y-1 lg:hover:-translate-y-2">
+                <div className="relative overflow-hidden bg-slate-100 group-hover:bg-slate-200 dark:group-hover:bg-slate-800 transition-all duration-500">
                   <Image
                     src={image.src}
                     alt={image.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 lg:group-hover:scale-110 transition-transform duration-500"
+                    width={500}
+                    height={600}
+                    className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                  <div className="absolute inset-0 border border-transparent group-hover:border-[#c88240]/30 transition-all duration-500"></div>
                   {image.caption && (
-                    <div className="absolute bottom-0 left-0 right-0 p-3 text-white text-sm font-medium bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {image.caption}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white text-sm font-medium bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                      <p className="font-serif italic tracking-wide">{image.caption}</p>
                     </div>
                   )}
                 </div>
@@ -75,8 +74,12 @@ export default function Gallery({ galleryData }: GalleryProps) {
 
       {/* Lightbox Modal */}
       {selectedImage && (
-        <div 
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={() => {
             setSelectedImage(null);
             setSelectedCaption(null);
@@ -92,10 +95,12 @@ export default function Gallery({ galleryData }: GalleryProps) {
           }}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             className="relative max-w-5xl max-h-[90vh] w-full h-full"
+            onClick={(e) => e.stopPropagation()}
           >
             <Image
               src={selectedImage}
@@ -105,14 +110,14 @@ export default function Gallery({ galleryData }: GalleryProps) {
               sizes="100vw"
             />
             {selectedCaption && (
-              <div className="absolute bottom-4 left-4 right-4 text-center">
-                <p className="text-white text-lg font-medium bg-black/50 backdrop-blur-md px-4 py-2 rounded-lg">
+              <div className="absolute bottom-8 left-8 right-8 text-center">
+                <p className="font-serif text-white text-lg italic bg-black/50 backdrop-blur-md px-6 py-3 border border-[#c88240]/30 tracking-wide">
                   {selectedCaption}
                 </p>
               </div>
             )}
             <button
-              className="absolute top-4 right-4 p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+              className="absolute top-8 right-8 p-3 bg-black/30 backdrop-blur-md hover:bg-black/50 transition-all duration-300 border border-[#c88240]/30 hover:border-[#c88240]/50 focus:outline-none focus:border-[#c88240]"
               onClick={() => {
                 setSelectedImage(null);
                 setSelectedCaption(null);
@@ -120,10 +125,10 @@ export default function Gallery({ galleryData }: GalleryProps) {
               aria-label="Close image lightbox"
               autoFocus
             >
-              <i className="fas fa-times text-white text-xl"></i>
+              <i className="fas fa-times text-white text-lg"></i>
             </button>
           </motion.div>
-        </div>
+        </motion.div>
       )}
     </>
   );

@@ -8,155 +8,142 @@ interface ConcertsProps {
 }
 
 export default function Concerts({ concertsData }: ConcertsProps) {
-  // Function to get icon color classes
-  const getIconColorClasses = (color: string) => {
-    const colors: Record<string, string> = {
-      blue: "from-blue-500 to-indigo-600",
-      emerald: "from-emerald-500 to-teal-600",
-      red: "from-red-500 to-pink-600",
-      purple: "from-purple-500 to-violet-600",
-      amber: "from-amber-500 to-orange-600",
-      slate: "from-slate-600 to-slate-800"
-    };
-    return colors[color] || colors.blue;
-  };
-
   return (
-    <section className="py-32 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 bg-slate-50 dark:bg-slate-800">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-32 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 bg-white dark:bg-slate-950">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-24"
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mb-20 lg:mb-28"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-8 tracking-tight text-slate-900 dark:text-white">
-            {concertsData.title}
+          <h2 className="font-serif font-medium text-3xl sm:text-4xl lg:text-5xl xl:text-6xl tracking-tight text-slate-900 dark:text-white italic">
+            Concerts
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            {concertsData.subtitle}
-          </p>
         </motion.div>
 
-        {/* Upcoming Concerts */}
-        <div className="mb-20">
-          <motion.h3
-            initial={{ opacity: 0, x: -20 }}
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
+          {/* Upcoming Concerts */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-2xl font-bold mb-10 text-slate-900 dark:text-white flex items-center gap-3"
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <i className="fas fa-calendar text-blue-600 text-2xl"></i>
-            Upcoming Performances
-          </motion.h3>
-
-          <div className="space-y-6">
-            {concertsData.upcoming.map((concert, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="bg-white dark:bg-slate-700 p-8 rounded-2xl border border-slate-200/50 dark:border-slate-600/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-                  <div className="flex-1">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className={`bg-gradient-to-br ${getIconColorClasses(concert.iconColor)} p-3 rounded-lg flex-shrink-0 shadow-lg`}>
-                        <i className="fas fa-music text-white text-xl"></i>
-                      </div>
-                      <div>
-                        <h4 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">
-                          {concert.title}
-                        </h4>
-                        <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
-                          {concert.description}
-                        </p>
-                        <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
-                          {concert.date && (
-                            <div className="flex items-center gap-1">
-                              <i className="fas fa-calendar"></i>
-                              <span>{concert.date}</span>
-                            </div>
-                          )}
-                          {concert.time && (
-                            <div className="flex items-center gap-1">
-                              <i className="fas fa-clock"></i>
-                              <span>{concert.time}</span>
-                            </div>
-                          )}
-                          {concert.location && (
-                            <div className="flex items-center gap-1">
-                              <i className="fas fa-map-marker-alt"></i>
-                              <span>{concert.location}</span>
-                            </div>
-                          )}
-                        </div>
+            <h3 className="font-serif text-xl sm:text-2xl font-medium tracking-wide text-slate-900 dark:text-white mb-12 italic">
+              Upcoming Events
+            </h3>
+            <div className="space-y-12">
+              {concertsData.upcoming.map((concert, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    delay: index * 0.1, 
+                    duration: 0.7, 
+                    ease: [0.25, 0.1, 0.25, 1] 
+                  }}
+                  className="group border-b border-slate-200/50 dark:border-slate-800/50 pb-8 last:border-0 hover:border-[#c88240]/30 dark:hover:border-[#c88240]/30 transition-all duration-500"
+                >
+                  <div className="flex flex-col gap-6">
+                    <div>
+                      <h4 className="font-serif text-lg sm:text-xl font-medium text-slate-900 dark:text-white mb-4 tracking-wide group-hover:text-[#c88240] transition-colors duration-300">
+                        {concert.title}
+                      </h4>
+                      <div className="text-sm text-slate-600 dark:text-slate-400 space-y-3 font-light">
+                        {concert.date && (
+                          <div className="flex items-center gap-3">
+                            <div className="w-1.5 h-1.5 bg-[#c88240] rounded-full opacity-80"></div>
+                            <span className="tracking-wide">
+                              {concert.date} {concert.time && `• ${concert.time}`}
+                            </span>
+                          </div>
+                        )}
+                        {concert.location && (
+                          <div className="pl-5 text-slate-500 dark:text-slate-500 tracking-wide">
+                            {concert.location}
+                          </div>
+                        )}
                       </div>
                     </div>
+                    {concert.description && (
+                      <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed tracking-wide pl-5">
+                        {concert.description}
+                      </p>
+                    )}
+                    {concert.buttonText && (
+                      <button
+                        onClick={() =>
+                          document
+                            .querySelector(concert.buttonLink)
+                            ?.scrollIntoView({ behavior: "smooth" })
+                        }
+                        className="self-start text-xs font-medium uppercase tracking-[0.2em] text-slate-700 dark:text-slate-300 hover:text-[#c88240] dark:hover:text-[#c88240] transition-all duration-300 border-b border-transparent hover:border-[#c88240] pb-1 ml-5"
+                      >
+                        {concert.buttonText}
+                      </button>
+                    )}
                   </div>
-                  <div className="flex-shrink-0">
-                    <button
-                      onClick={() =>
-                        document
-                          .querySelector(concert.buttonLink)
-                          ?.scrollIntoView({ behavior: "smooth" })
-                      }
-                      className={`${
-                        index === 0 
-                          ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900" 
-                          : "border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50"
-                      } px-6 py-3 rounded-xl font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-200 flex items-center gap-2`}
-                    >
-                      <i className="fas fa-external-link-alt"></i>
-                      {concert.buttonText}
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-        {/* Past Highlights */}
-        <div>
-          <motion.h3
-            initial={{ opacity: 0, x: -20 }}
+          {/* Past Performances */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-2xl font-bold mb-10 text-slate-900 dark:text-white flex items-center gap-3"
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
           >
-            <i className="fas fa-map-marker-alt text-amber-600 text-2xl"></i>
-            Past Performance Highlights
-          </motion.h3>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {concertsData.pastPerformances.map((performance, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="bg-white dark:bg-slate-700 p-8 rounded-2xl border border-slate-200/50 dark:border-slate-600/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className={`bg-gradient-to-br ${getIconColorClasses(performance.iconColor)} w-12 h-12 rounded-xl flex items-center justify-center mb-6 shadow-lg`}>
-                  <i className="fas fa-music text-white text-xl"></i>
-                </div>
-                <h4 className="text-lg font-bold mb-3 text-slate-900 dark:text-white">
-                  {performance.title}
-                </h4>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-3">
-                  {performance.description}
-                </p>
-                <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
-                  <i className={`fas ${performance.type === 'Ongoing' ? 'fa-calendar' : 'fa-map-marker-alt'} text-xs`}></i>
-                  {performance.location || performance.type}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+            <h3 className="font-serif text-xl sm:text-2xl font-medium tracking-wide text-slate-900 dark:text-white mb-12 italic">
+              Past Performances
+            </h3>
+            <div className="space-y-10">
+              {concertsData.pastPerformances?.map((performance, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    delay: index * 0.08, 
+                    duration: 0.6, 
+                    ease: [0.25, 0.1, 0.25, 1] 
+                  }}
+                  className="group border-b border-slate-200/50 dark:border-slate-800/50 pb-6 last:border-0 hover:border-[#c88240]/20 dark:hover:border-[#c88240]/20 transition-all duration-500"
+                >
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <h4 className="font-serif text-base sm:text-lg font-medium text-slate-900 dark:text-white mb-2 tracking-wide group-hover:text-[#c88240] transition-colors duration-300">
+                        {performance.title}
+                      </h4>
+                      <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-500 mb-3">
+                        <div className="w-1 h-1 bg-[#c88240] rounded-full opacity-60"></div>
+                        <span className="tracking-wider uppercase">
+                          {performance.type}
+                        </span>
+                        {performance.location && (
+                          <>
+                            <span>•</span>
+                            <span className="tracking-wide">{performance.location}</span>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    {performance.description && (
+                      <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed tracking-wide pl-4">
+                        {performance.description}
+                      </p>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
