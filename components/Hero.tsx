@@ -133,7 +133,7 @@ export default function Hero({ heroData, siteConfig }: HeroProps) {
               animate="animate"
               className="relative order-1 lg:order-2"
             >
-              <div className="relative max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl mx-auto cursor-morph">
+              <div className="relative max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
                 <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src={heroData.image}

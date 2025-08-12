@@ -174,7 +174,7 @@ export default function Contact({ contactData }: ContactProps) {
               >
                 <div className="flex items-center gap-3">
                   <i className="fas fa-check-circle text-[#c88240]"></i>
-                  <span className="font-serif italic">Message sent successfully! I'll get back to you soon.</span>
+                  <span className="font-serif italic">Message sent successfully! I&rsquo;ll get back to you soon.</span>
                 </div>
               </motion.div>
             )}
